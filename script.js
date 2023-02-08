@@ -1,12 +1,13 @@
-// GLOBALNE VARIJABLE ================================================================
+// GLOBAL VARIABLES ================================================================
+
 let allLi = document.querySelectorAll("li");
 let ulTasks = document.querySelector("ul");
 let inputTask = document.getElementById("task");
-let niz = [];
+let array = [];
 
-// UNESI NOVI TASK ====================================================================
+// INPUT NEW TASK ====================================================================
 
-let unosNovogTaska = () => {
+let inputNewTask = () => {
   inputTask.addEventListener("keyup", (e) => {
     if (e.key == "Enter") {
       let inputTaskValue = inputTask.value;
@@ -16,34 +17,34 @@ let unosNovogTaska = () => {
         let radioAdd = document.querySelector("input[name=add]:checked");
         if (radioAdd.value == "beggin") {
           ulTasks.prepend(liNewTask);
-          niz.unshift(liNewTask.textContent);
+          array.unshift(liNewTask.textContent);
         } else {
           ulTasks.appendChild(liNewTask);
-          niz.push(liNewTask.textContent);
+          array.push(liNewTask.textContent);
         }
-        localStorage.setItem("list", JSON.stringify(niz));
+        localStorage.setItem("list", JSON.stringify(array));
         inputTask.value = "";
       }
     }
   });
 };
 
-unosNovogTaska();
+inputNewTask();
 
-// UCITAJ LISTU IZ LOKAL STORAGEA =====================================================
+// LOAD LIST FROM LOCAL STORAGE =====================================================
 
-let ucitajListuIzLokalStoragea = () => {
-  niz = JSON.parse(localStorage.getItem("list")) || [];
-  niz.forEach((el) => {
+let loadListFromLocalStorage = () => {
+  array = JSON.parse(localStorage.getItem("list")) || [];
+  array.forEach((el) => {
     let liNewTask = document.createElement("li");
     liNewTask.textContent = el;
     ulTasks.appendChild(liNewTask);
   });
 };
 
-ucitajListuIzLokalStoragea();
+loadListFromLocalStorage();
 
-// BRISI ELEMENTE IZ DOMA I LOCAL STORAGEA =============================================
+// ERASE TASKS FROM DOM AND LOCAL STORAGE =============================================
 
 ulTasks.addEventListener("click", () => {
   allLi.forEach((el) => {
@@ -51,19 +52,19 @@ ulTasks.addEventListener("click", () => {
   });
 });
 
-let obrisiIzDomaIStoragea = () => {
+let eraseFromDOMandStorage = () => {
   ulTasks.addEventListener("click", (e) => {
     if (e.target.tagName == "LI") {
       e.target.remove();
-      niz = JSON.parse(localStorage.getItem("list"));
-      for (i = 0; i < niz.length; i++) {
-        if (e.target.textContent == niz[i]) {
-          niz.splice(i, 1);
+      array = JSON.parse(localStorage.getItem("list"));
+      for (i = 0; i < array.length; i++) {
+        if (e.target.textContent == array[i]) {
+          array.splice(i, 1);
         }
       }
-      localStorage.setItem("list", JSON.stringify(niz));
+      localStorage.setItem("list", JSON.stringify(array));
     }
   });
 };
 
-obrisiIzDomaIStoragea();
+eraseFromDOMandStorage();
