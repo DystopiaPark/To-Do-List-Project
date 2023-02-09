@@ -1,12 +1,10 @@
 body {
-  margin: 0;
   font-size: 22px;
   display: grid;
   place-items: center;
   background-color: rgb(219, 240, 176);
 }
 h1 {
-  margin-left: 10px;
   color: dodgerblue;
 }
 ul {

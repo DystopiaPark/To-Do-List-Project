@@ -46,12 +46,6 @@ loadListFromLocalStorage();
 
 // ERASE TASKS FROM DOM AND LOCAL STORAGE =============================================
 
-ulTasks.addEventListener("click", () => {
-  allLi.forEach((el) => {
-    el.style.display = "none";
-  });
-});
-
 let eraseFromDOMandStorage = () => {
   ulTasks.addEventListener("click", (e) => {
     if (e.target.tagName == "LI") {
