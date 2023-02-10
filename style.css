@@ -38,3 +38,7 @@ i {
   font-size: 1.7rem;
   cursor: pointer;
 }
+i:hover {
+  transform: scale(1.2) translateY(-20%);
+  color: darkblue;
+}

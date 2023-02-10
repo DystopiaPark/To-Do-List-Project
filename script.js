@@ -3,7 +3,6 @@
 let ulTasks = document.querySelector("ul");
 let inputTask = document.getElementById("task");
 let array = [];
-let bins = [];
 
 // INPUT NEW TASK ====================================================================
 
