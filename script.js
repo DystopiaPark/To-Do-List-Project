@@ -73,8 +73,11 @@ eraseFromDOMandStorage();
 
 // PLAY AUDIO IN THE BACKGROUND ========================================================
 
-setTimeout(() => {
-  var audio = new Audio("f.mp3");
-  audio.play();
-  audio.volume = 0.2;
-}, 3000);
+soundIcon = document.getElementById("sound");
+var audio = new Audio("f.mp3");
+audio.volume = 0.2;
+
+soundIcon.addEventListener("click", () => {
+  if (audio.paused) audio.play();
+  else audio.pause();
+});

@@ -43,3 +43,8 @@ i:hover {
   transform: scale(1.2) translateY(-20%);
   color: darkblue;
 }
+
+#sound {
+  margin-left: 10px;
+  cursor: pointer;
+}
