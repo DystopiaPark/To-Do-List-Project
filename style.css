@@ -20,7 +20,6 @@ li {
 }
 li:hover {
   background-color: dodgerblue;
-  cursor: pointer;
 }
 
 #task {
@@ -31,4 +30,11 @@ li:hover {
 
 input[type="radio"] {
   margin: 10px;
+}
+i {
+  font-style: normal;
+  float: right;
+  transform: translateY(-10%);
+  font-size: 1.7rem;
+  cursor: pointer;
 }

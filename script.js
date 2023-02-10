@@ -1,9 +1,9 @@
 // GLOBAL VARIABLES ================================================================
 
-let allLi = document.querySelectorAll("li");
 let ulTasks = document.querySelector("ul");
 let inputTask = document.getElementById("task");
 let array = [];
+let bins = [];
 
 // INPUT NEW TASK ====================================================================
 
@@ -14,14 +14,20 @@ let inputNewTask = () => {
       if (inputTaskValue != "") {
         let liNewTask = document.createElement("li");
         liNewTask.textContent += inputTaskValue;
+        let removeBucket = document.createElement("i");
+        removeBucket.innerHTML = "&#128465;";
+        liNewTask.append(removeBucket);
         let radioAdd = document.querySelector("input[name=add]:checked");
         if (radioAdd.value == "beggin") {
           ulTasks.prepend(liNewTask);
-          array.unshift(liNewTask.textContent);
+          let trimmedTask = liNewTask.textContent.slice(0, -2);
+          array.unshift(trimmedTask);
         } else {
           ulTasks.appendChild(liNewTask);
-          array.push(liNewTask.textContent);
+          let trimmedTask = liNewTask.textContent.slice(0, -2);
+          array.push(trimmedTask);
         }
+
         localStorage.setItem("list", JSON.stringify(array));
         inputTask.value = "";
       }
@@ -39,6 +45,9 @@ let loadListFromLocalStorage = () => {
     let liNewTask = document.createElement("li");
     liNewTask.textContent = el;
     ulTasks.appendChild(liNewTask);
+    let removeBucket = document.createElement("i");
+    removeBucket.innerHTML = "&#128465;";
+    liNewTask.append(removeBucket);
   });
 };
 
@@ -48,11 +57,11 @@ loadListFromLocalStorage();
 
 let eraseFromDOMandStorage = () => {
   ulTasks.addEventListener("click", (e) => {
-    if (e.target.tagName == "LI") {
-      e.target.remove();
+    if (e.target.tagName == "I") {
+      e.target.parentElement.remove();
       array = JSON.parse(localStorage.getItem("list"));
       for (i = 0; i < array.length; i++) {
-        if (e.target.textContent == array[i]) {
+        if (e.target.parentElement.textContent.slice(0, -2) == array[i]) {
           array.splice(i, 1);
         }
       }
