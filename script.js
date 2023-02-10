@@ -70,3 +70,9 @@ let eraseFromDOMandStorage = () => {
 };
 
 eraseFromDOMandStorage();
+
+// PLAY AUDIO IN THE BACKGROUND ========================================================
+
+var audio = new Audio("f.mp3");
+audio.play();
+audio.volume = 0.2;
